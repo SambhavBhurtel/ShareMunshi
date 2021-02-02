@@ -23,7 +23,9 @@ def ScripCode(url):
 
     del company_data['Choose Symbol']
 
-    print(company_data)
+    return company_data
 
-def AddScripCode(stock_info):
-    print("None")
+def AddScripCode(all_data, code):
+    for key, value in all_data.items():
+        all_data[key].append(code[key])
+    print(all_data)

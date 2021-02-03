@@ -16,20 +16,20 @@ def scrape_market_depth(scrip_symbol, url):
     
     scrip_depth = {}
     scrip_depth['Scrip Name'] = scrip_symbol
-    scrip_depth['Last Traded Price(LTP)'] = depth_details_2[0].find('label').text.strip()
+    scrip_depth['Last Traded Price(LTP)'] = depth_details_2[0].find('label').text.strip().replace(',','')
     
-    ltp = float(depth_details_2[0].find('label').text.strip())
+    ltp = float(depth_details_2[0].find('label').text.strip().replace(',',''))
 
     for depth_detail in depth_details_2:
         depth_detail.label.decompose()
     
-    scrip_depth['Previous Closing Price'] = depth_details_2[1].text.strip()
-    scrip_depth['Opening Price'] = depth_details_2[2].text.strip()
-    scrip_depth['Highest Price'] = depth_details_2[3].text.strip()
-    scrip_depth['Lowest Price'] = depth_details_2[4].text.strip()
-    scrip_depth['Closing Price'] = depth_details_2[5].text.strip()
+    scrip_depth['Previous Closing Price'] = depth_details_2[1].text.strip().replace(',','')
+    scrip_depth['Opening Price'] = depth_details_2[2].text.strip().replace(',','')
+    scrip_depth['Highest Price'] = depth_details_2[3].text.strip().replace(',','')
+    scrip_depth['Lowest Price'] = depth_details_2[4].text.strip().replace(',','')
+    scrip_depth['Closing Price'] = depth_details_2[5].text.strip().replace(',','')
 
-    pre_close = float(depth_details_2[1].text.strip())
+    pre_close = float(depth_details_2[1].text.strip().replace(',',''))
 
     if ltp >= pre_close:
         inc_price = ltp - pre_close

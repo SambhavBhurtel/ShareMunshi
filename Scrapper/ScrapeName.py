@@ -23,7 +23,7 @@ def StockName(url):
     
     companies = {}
     for data in company_data:
-        companies[data[1].text] = [data[0].text[9:-4], data[2].text]
+        companies[data[1].text] = [data[0].text.strip(), data[2].text]
 
     return companies
 

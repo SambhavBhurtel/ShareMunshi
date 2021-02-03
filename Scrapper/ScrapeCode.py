@@ -28,4 +28,4 @@ def ScripCode(url):
 def AddScripCode(all_data, code):
     for key, value in all_data.items():
         all_data[key].append(code[key])
-    print(all_data)
+    return (all_data)

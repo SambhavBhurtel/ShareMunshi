@@ -45,5 +45,3 @@ def scrape_market_depth(scrip_symbol, url):
     return scrip_depth
 
 
-# reqd_url = marketdepth_url_resolver('SCPC', 591)
-# print(scrape_market_depth('SHPC',reqd_url))

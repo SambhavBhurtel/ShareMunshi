@@ -24,8 +24,8 @@ def md_data(scrip_symbol):
     return scrip_depth
 
 
-def Merge(dict1, dict2, dict3):
-    return {k:v for d in [dict1,dict2,dict3] for k,v in d.items()}
+def Merge(dict_list):
+    return {k:v for d in dict_list for k,v in d.items()}
 
 def md_data_additional(scrip_symbol):
     md_data_minimal = md_data(scrip_symbol)
@@ -34,7 +34,20 @@ def md_data_additional(scrip_symbol):
     additional_data_nepse = {}
     for key, value in add_data.items():
         additional_data_nepse['NEPSE ' + key] = value
-    return Merge(md_data_minimal, additional_data_scrip, additional_data_nepse)
+
+    percentage_of_nepse = {}
+    
+    nepse_turnover = additional_data_nepse['NEPSE Total Turnover Amount'] 
+    scrip_turnover = additional_data_scrip['Total Turnover Amount']
+    percent_turnover = (scrip_turnover / nepse_turnover) * 100
+    percentage_of_nepse['Percentage of Total Turnover'] = round(percent_turnover,2)
+    
+    nepse_quantity = additional_data_nepse['NEPSE Total Quantity']
+    scrip_quantity = additional_data_scrip['Total Quantity']
+    percent_quantity = (scrip_quantity / nepse_quantity) * 100
+    percentage_of_nepse['Percentage of Total Quantity'] = round(percent_quantity,2)
+
+    return Merge([md_data_minimal, additional_data_scrip, additional_data_nepse, percentage_of_nepse])
 
 def md_printer(additional=True):
     scrip_symbol = input("MARKET DEPTH VIEWER\nEnter Scrip Code: ").upper()

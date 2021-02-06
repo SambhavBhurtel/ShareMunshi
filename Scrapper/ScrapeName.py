@@ -53,6 +53,18 @@ def AddScripCode(all_data, code):
     return (all_data)
 
     
+def create_company_dict():
+    company_detail_url = 'http://www.nepalstock.com/company/index/1?stock-name=&stock-symbol=&sector-id=&_limit=500'
+    company_detail = StockName(company_detail_url)
+
+    market_depth_url = 'http://www.nepalstock.com/marketdepth'
+    scrip_code = ScripCode(market_depth_url)
+
+    return AddScripCode(company_detail, scrip_code)
+
     
+def scrip_info(scrip_symbol):
+    company_dict = create_company_dict()
+    return company_dict[scrip_symbol]
     
 

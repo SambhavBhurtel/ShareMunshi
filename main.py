@@ -1,9 +1,8 @@
 #! .\\venv\\Scripts\\python.exe
 
-from Scrapper.ScrapeCode import ScripCode, AddScripCode
-from Scrapper.ScrapeName import StockName
+from Scrapper.ScrapeName import StockName, ScripCode, AddScripCode
 from Scrapper.ScrapeMD import marketdepth_url_resolver, scrape_market_depth
-from Scrapper.ScrapeFS import fs_scraper, fs_data
+from Scrapper.ScrapeFS import fs_data
 
 
 def create_company_dict():
@@ -15,6 +14,10 @@ def create_company_dict():
 
     return AddScripCode(company_detail, scrip_code)
     
+
+def scrip_info(scrip_symbol):
+    company_dict = create_company_dict()
+    return company_dict[scrip_symbol]
 
 def md_data(scrip_symbol):
     company_dict = create_company_dict()
@@ -60,3 +63,4 @@ def md_printer(additional=True):
         print(str(key) + ': ' + str(value))
 
 md_printer()
+print(scrip_info('MEN'))

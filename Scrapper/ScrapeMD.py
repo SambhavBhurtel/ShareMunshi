@@ -44,4 +44,3 @@ def scrape_market_depth(scrip_symbol, url):
 
     return scrip_depth
 
-
